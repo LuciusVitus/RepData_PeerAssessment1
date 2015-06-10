@@ -391,6 +391,23 @@ xyplot(meansteps ~ interval | daytype, data = rdf, type = "l", main = "", xlab =
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21.png) 
 
+Let's compute the mean, median, max and min of the steps across all intervals and days by Weekdays/Weekends
+
+```r
+tapply(mean_steps_by_interval$steps, mean_steps_by_interval$day_type, function(x) {
+    c(MIN = min(x), MEAN = mean(x), MEDIAN = median(x), MAX = max(x))
+})
+```
+
+```
+## $Weekday
+##    MIN   MEAN MEDIAN    MAX 
+##   0.00  35.61  25.80 230.38 
+## 
+## $Weekend
+##    MIN   MEAN MEDIAN    MAX 
+##   0.00  42.37  32.34 166.64
+```
 
 We see that there is in fact a difference in behaviour between weekdays and weekends.
 
